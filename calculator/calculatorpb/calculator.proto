@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package calculator;
+option go_package="./calculator/calculatorpb";
+
+message SquareRootRequest{
+    int32 number = 1;
+}
+
+message SquareRootResponse {
+    double number_root = 1;
+}
+
+service CalculatorService {
+
+    // error handling
+    // this TPC weill throw an exception if the number sent is negative
+    // The error being sent is of type INVALID_ARGUMENT
+    rpc SquareRoot(SquareRootRequest) returns (SquareRootResponse);
+}
